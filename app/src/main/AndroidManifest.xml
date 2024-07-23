@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".OnBording" />
+        <activity android:name=".LogIn" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".MainScreen" />
     </application>
 
 </manifest>
