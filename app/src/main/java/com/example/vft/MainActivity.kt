@@ -3,6 +3,8 @@ package com.example.vft
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,4 +14,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, OnBording::class.java))
         finish()
     }
+
+
 }

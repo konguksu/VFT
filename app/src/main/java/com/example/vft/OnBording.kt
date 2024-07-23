@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class OnBording : AppCompatActivity() {
 
@@ -34,13 +36,24 @@ class OnBording : AppCompatActivity() {
         logo.startAnimation(moveUp)
 
         logIn.setOnClickListener {
-            startActivity(Intent(this, LogIn::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
         signUp.setOnClickListener {
-            startActivity(Intent(this, SignUp::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
             finish()
+        }
+    }
+
+    //이미 로그인을 했는지 체크
+    override fun onStart() {
+        super.onStart()
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        //로그인을 한 상태면 바로 메인 화면으로
+        if (currentUser != null) {
+            startActivity(Intent(this, MainScreen::class.java))
         }
     }
 
