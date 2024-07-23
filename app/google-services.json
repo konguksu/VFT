@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "234345000603",
+    "firebase_url": "https://guru2-68255-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "guru2-68255",
+    "storage_bucket": "guru2-68255.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234345000603:android:b4dc8316ec9504755ba03e",
+        "android_client_info": {
+          "package_name": "com.example.vft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDV7aJSxh6PvNdevvZWhNhOy5AwZtc9vY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
