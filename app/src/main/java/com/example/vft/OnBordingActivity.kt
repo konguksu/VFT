@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class OnBording : AppCompatActivity() {
+class OnBordingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.onboarding)
+        setContentView(R.layout.activity_onboarding)
 
         val logo = findViewById<ImageView>(R.id.logo)
         val logIn = findViewById<Button>(R.id.logIn)
@@ -53,7 +53,7 @@ class OnBording : AppCompatActivity() {
         val currentUser = auth.currentUser
         //로그인을 한 상태면 바로 메인 화면으로
         if (currentUser != null) {
-            startActivity(Intent(this, MainScreen::class.java))
+            startActivity(Intent(this, MainScreenActivity::class.java))
         }
     }
 

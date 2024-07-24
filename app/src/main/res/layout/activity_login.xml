@@ -39,7 +39,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:padding="15dp"
-        android:hint="아이디"
+        android:hint="아이디(이메일)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
