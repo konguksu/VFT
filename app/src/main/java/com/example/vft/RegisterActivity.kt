@@ -1,8 +1,6 @@
 package com.example.vft
 
-import android.app.ProgressDialog
 import android.content.Intent
-import android.net.wifi.hotspot2.pps.Credential
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,17 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.core.Tag
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
+import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -77,9 +69,15 @@ class RegisterActivity : AppCompatActivity() {
             val pwdCheck = edtPwdCheck.text.toString().trim()
             val nickname = edtNickName.text.toString().trim()
 
-            //중복 확인 검사 통과 못했다면
+
+
+            //중복 확인 통과했는지 검사
             if (!isIDAvailable) {
                 Toast.makeText(this, "아이디 중복 확인 필요", Toast.LENGTH_SHORT).show()
+            }
+            //비밀번호 패턴 일치 검사
+            else if (!isPwdOk(pwd)){
+                Toast.makeText(this, "비밀번호는 6~20자 이내의 \n영문/숫자/특수문자 중 2가지 이상의 조합이어야 합니다", Toast.LENGTH_SHORT).show()
             }
             //비밀번호와 비밀번호 재확인 값이 일치하는지 확인
             else if (!pwd.equals(pwdCheck))
@@ -102,6 +100,7 @@ class RegisterActivity : AppCompatActivity() {
                         db.collection("userInfo").document(ID).set(userInfo)
 
                         Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show()
+                        auth.signOut() //자동으로 로그인 되므로 우선 로그아웃
                         //로그인 화면으로 이동
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
@@ -118,6 +117,24 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
-
     }
+
+    //비밀번호 규약 따르는지 검사하는 함수
+    //비밀번호 규정 숫자/문자/특수문자 2가지 이상 조합한 6~20자
+    private fun isPwdOk(pwd:String):Boolean{
+        val pwdPattern1 =
+                "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,20}$" // 영문 + 숫자
+        val pwdPattern2 =
+                "^(?=.*[0-9])(?=.*[$@$!%*#?&.])[[0-9]$@$!%*#?&.]{6,20}$" // 숫자 +특수문자
+        val pwdPattern3 =
+                "^(?=.*[A-Za-z])(?=.*[$@$!%*#?&.])[A-Za-z$@$!%*#?&.]{6,20}$" // 영문 + 특수문자
+        val pwdPattern4 =
+                "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{6,20}$" // 영문 + 숫자 + 특수문자
+
+        return (Pattern.matches(pwdPattern1, pwd) ||
+                Pattern.matches(pwdPattern2, pwd) ||
+                Pattern.matches(pwdPattern3, pwd) ||
+                Pattern.matches(pwdPattern4, pwd))
+    }
+
 }
