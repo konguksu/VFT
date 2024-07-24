@@ -18,10 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OnBording"/>
+        <activity android:name=".OnBordingActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
-        <activity android:name=".MainScreen"/>
+        <activity android:name=".MainScreenActivity"/>
     </application>
 
 </manifest>
