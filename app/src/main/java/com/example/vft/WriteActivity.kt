@@ -47,86 +47,35 @@ class WriteActivity : AppCompatActivity() {
 
         }
 
+        //제목 입력
         edtTitle.addTextChangedListener(object : TextWatcher {
-            private var isEditing = false
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // Do nothing
+
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // Do nothing
+
             }
 
             override fun afterTextChanged(editable: Editable) {
-                if (isEditing) return
-
-                isEditing = true
-                val maxByteLength = 100
-                val currentText = editable.toString()
-                val byteArray = currentText.toByteArray(Charsets.UTF_8)
-
-                if (byteArray.size > maxByteLength) {
-                    Toast.makeText(applicationContext, "입력 범위를 넘었습니다.", Toast.LENGTH_SHORT).show()
-
-                    // 바이트 수를 제한하는 텍스트 자르기
-                    var truncatedText = currentText
-                    while (truncatedText.toByteArray(Charsets.UTF_8).size > maxByteLength) {
-                        truncatedText = truncatedText.dropLast(1)
-                    }
-
-                    // 잘린 텍스트를 설정하고 커서를 끝으로 이동
-                    edtTitle.setText(truncatedText)
-                    edtTitle.setSelection(truncatedText.length)
-                } else {
-                    edtTitle.setText(currentText)
-                    edtTitle.setSelection(currentText.length)
-                }
-
-                isEditing = false
+                //글자수제한 코드 추가
             }
         })
 
+        //내용 입력
         edtContent.addTextChangedListener(object : TextWatcher {
-            private var isEditing = false
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // Do nothing
+
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // Do nothing
+
             }
 
             override fun afterTextChanged(editable: Editable) {
-                if (isEditing) return
-
-                isEditing = true
-                val maxByteLength = 800
-                val currentText = editable.toString()
-                val byteArray = currentText.toByteArray(Charsets.UTF_8)
-
-                if (byteArray.size > maxByteLength) {
-                    Toast.makeText(applicationContext, "입력 범위를 넘었습니다.", Toast.LENGTH_SHORT).show()
-
-                    // 바이트 수를 제한하는 텍스트 자르기
-                    var truncatedText = currentText
-                    while (truncatedText.toByteArray(Charsets.UTF_8).size > maxByteLength) {
-                        truncatedText = truncatedText.dropLast(1)
-                    }
-
-                    // 잘린 텍스트를 설정하고 커서를 끝으로 이동
-                    edtContent.setText(truncatedText)
-                    edtContent.setSelection(truncatedText.length)
-                } else {
-                    edtContent.setText(currentText)
-                    edtContent.setSelection(currentText.length)
-                }
-
-                // 바이트 길이를 화면에 표시
-                count.text = byteArray.size.toString()
-
-                isEditing = false
+                //글자수제한 코드 추가
             }
         })
 
