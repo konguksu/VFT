@@ -1,12 +1,16 @@
 package com.example.vft
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.internal.TextWatcherAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -35,6 +39,14 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = Firebase.firestore
+
+        //id 변경하면 중복확인 초기화
+        edtID.addTextChangedListener(@SuppressLint("RestrictedApi")
+        object : TextWatcherAdapter() {
+            override fun onTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) {
+                isIDAvailable = false
+            }
+        })
 
         //중복 확인 버튼
         btnIdCheck.setOnClickListener {
