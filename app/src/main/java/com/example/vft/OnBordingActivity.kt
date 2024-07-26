@@ -37,12 +37,10 @@ class OnBordingActivity : AppCompatActivity() {
 
         logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
         }
 
         signUp.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
         }
     }
 

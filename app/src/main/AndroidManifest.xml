@@ -22,6 +22,7 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainScreenActivity"/>
+        <activity android:name=".WriteActivity"/>
     </application>
 
 </manifest>
