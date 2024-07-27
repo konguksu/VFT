@@ -21,8 +21,15 @@ class HomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         val writeBtn: Button = view.findViewById<Button>(R.id.writeBtn)
+        val listBtn: Button = view.findViewById<Button>(R.id.listBtn)
+
         writeBtn.setOnClickListener {
             val intent = Intent(activity, WriteActivity::class.java)
+            startActivity(intent)
+        }
+
+        listBtn.setOnClickListener {
+            val intent = Intent(activity, ListActivity::class.java)
             startActivity(intent)
         }
     }
