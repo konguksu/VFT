@@ -22,7 +22,9 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainScreenActivity"/>
-        <activity android:name=".WriteActivity"/>
+        <activity android:name=".WriteActivity"/>\
+        <activity android:name=".ListActivity"/>
+        <activity android:name=".CommentActivity"/>
     </application>
 
 </manifest>
