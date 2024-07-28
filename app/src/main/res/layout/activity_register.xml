@@ -92,8 +92,9 @@
     <Button
         android:id="@+id/btnStart"
         android:layout_width="310dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="160dp"
+        android:background="@drawable/button_shape"
         android:text="시작하기"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
