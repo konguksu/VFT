@@ -1,4 +1,4 @@
 package com.example.vft
 
-class ListItem (val itemtitle: String, val itemContent: String) {
+class ListItem (val itemTitle: String, val itemContent: String) {
 }

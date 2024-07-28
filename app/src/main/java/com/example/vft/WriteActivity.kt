@@ -1,6 +1,5 @@
 package com.example.vft
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -90,22 +89,23 @@ class WriteActivity : AppCompatActivity() {
             val continueBtn: Button = dlgView.findViewById(R.id.continueBtn)
             val quitBtn: Button = dlgView.findViewById(R.id.quitBtn)
 
-            //더 작성하기 버튼
+            //대화상자 - 더 작성하기 버튼
             continueBtn.setOnClickListener {
                 //제목과 내용 초기화
 //                    edtTitle.text = null
 //                    edtContent.text = null
 
+                //대화상자를 끄고 작성하던 글을 이어서 작성
                 alertDialog.dismiss()
             }
 
-            //모두 작성 완료
+            //대화상자 - 연어 주기 버튼
             quitBtn.setOnClickListener {
-                //제목 입력 확인
+                //제목 입력 안된 경우
                 if (edtTitle.text.toString() == "") {
                     Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
-                //고민 내용 입력 확인
+                //고민 내용 입력 안된 경우
                 else if (edtContent.text.toString() == "") {
                     Toast.makeText(this, "고민을 입력해주세요", Toast.LENGTH_SHORT).show()
                 }

@@ -15,7 +15,7 @@ class ListAdapter (private val context: Context, private val itemList: ArrayList
         val itemContent = view.findViewById<TextView>(R.id.itemContent)
 
         val item = itemList[position]
-        itemTitle.text = item.itemtitle
+        itemTitle.text = item.itemTitle
         itemContent.text = item.itemContent
 
         return view
