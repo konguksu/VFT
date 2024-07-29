@@ -6,14 +6,18 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.ktx.Firebase
 
 class ListActivity : AppCompatActivity() {
 
     private lateinit var adapter: ListAdapter
     private val itemList = arrayListOf<ListItem>()
     private lateinit var db: FirebaseFirestore
+    private lateinit var userID:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,7 @@ class ListActivity : AppCompatActivity() {
         listView.adapter = adapter
 
         db = FirebaseFirestore.getInstance()
+        userID = Firebase.auth.currentUser!!.email.toString() //유저 이메일(아이디)
 
         // 데이터 가져오기
         fetchDataFromFirestore()
@@ -37,20 +42,19 @@ class ListActivity : AppCompatActivity() {
             finish()
         }
 
-        // **고민 클릭 시 고민 전문화면으로 이동**
+        // 고민 클릭 시 고민 전문화면으로 이동
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val selectedItem = itemList[position]
             val intent = Intent(this, CommentActivity::class.java)
-            intent.putExtra("title", selectedItem.itemTitle)
-            intent.putExtra("content", selectedItem.itemContent)
+            intent.putExtra("id",selectedItem.itemID)
             startActivity(intent)
+            finish()
         }
     }
 
-    //**백엔드 부분 확인 필요**
-    //데이터베이스에서 그동안 작성한 글 가져와서 리스트에 띄우기
+    //데이터베이스에서 해당 유저가 작성한 글 가져와서 리스트에 띄우기
     private fun fetchDataFromFirestore() {
-        db.collection("troubleList")
+        db.collection("troubleList").whereEqualTo("userID",userID).whereEqualTo("Comment","")
                 .addSnapshotListener { snapshot: QuerySnapshot?, exception ->
                     if (exception != null) {
                         // Handle the error
@@ -62,8 +66,10 @@ class ListActivity : AppCompatActivity() {
                         for (document in snapshot.documents) {
                             val title = document.getString("title") ?: ""
                             val content = document.getString("Content") ?: ""
-                            val listItem = ListItem(title, content)
+                            val id = document.id
+                            val listItem = ListItem(title, content,id)
                             itemList.add(listItem)
+
                         }
                         adapter.notifyDataSetChanged()
                     }
