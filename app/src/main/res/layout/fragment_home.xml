@@ -16,31 +16,119 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/nickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="18dp"
+        android:text="닉네임"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text=" 님 안녕하세요!"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/nickName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--  연어 프로그래스바  -->
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/salmonProg"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="186dp"
-        android:layout_height="12dp"
+        android:layout_width="183dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="15dp"
+        android:max="7"
+        android:progress="5"
+        android:progressDrawable="@drawable/progressbar_salmon"
         app:layout_constraintBottom_toTopOf="@+id/mainImg"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/salmonIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_salmon"
+        app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
+        app:layout_constraintStart_toStartOf="@+id/salmonProg"
+        app:layout_constraintTop_toTopOf="@+id/salmonProg" />
+
+    <TextView
+        android:id="@+id/numSalmon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
+        app:layout_constraintEnd_toStartOf="@+id/maxSalmon"
+        app:layout_constraintTop_toTopOf="@+id/salmonProg" />
+
+    <TextView
+        android:id="@+id/maxSalmon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="/7"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
+        app:layout_constraintEnd_toEndOf="@+id/salmonProg"
+        app:layout_constraintTop_toTopOf="@+id/salmonProg" />
+
+    <!--  꿀 프로그래스바  -->
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/honeyProg"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="183dp"
-        android:layout_height="12dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp"
+        android:max="8"
+        android:progress="2"
+        android:progressDrawable="@drawable/progressbar_honey"
         app:layout_constraintBottom_toTopOf="@+id/mainImg"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/honeyIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_honey"
+        app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
+        app:layout_constraintStart_toStartOf="@+id/honeyProg"
+        app:layout_constraintTop_toTopOf="@+id/honeyProg" />
+
+    <TextView
+        android:id="@+id/numHoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
+        app:layout_constraintEnd_toStartOf="@+id/maxHoney"
+        app:layout_constraintTop_toTopOf="@+id/honeyProg" />
+
+    <TextView
+        android:id="@+id/maxHoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="/7"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
+        app:layout_constraintEnd_toEndOf="@+id/honeyProg"
+        app:layout_constraintTop_toTopOf="@+id/honeyProg" />
 
     <ImageView
         android:id="@+id/mainImg"
         android:layout_width="376dp"
         android:layout_height="450dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="120dp"
         android:src="@drawable/ch0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +138,7 @@
         android:id="@+id/writeBtn"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="160dp"
         android:text="고민 입력하기"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
@@ -64,8 +152,8 @@
         android:id="@+id/listBtn"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="132dp"
-        android:text="고민 목록가기"
+        android:layout_marginBottom="105dp"
+        android:text="코멘트 작성하기"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:cornerRadius="10dp"

@@ -16,6 +16,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/nickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="18dp"
+        android:text="닉네임"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text=" 님 안녕하세요!"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/nickName"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/exitBtn"
         android:layout_width="43dp"
@@ -26,71 +46,82 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtTitle"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:background="@drawable/square_border"
-        android:hint="제목"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:layout_marginTop="70dp"
-        android:maxLines="1"
-        android:maxLength="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
 
-    <EditText
-        android:id="@+id/edtContent"
-        android:layout_width="380dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="119dp"
-        android:background="@drawable/square_border"
-        android:gravity="start"
-        android:hint="내용"
-        android:padding="10dp"
-        android:textSize="18dp"
-        android:scrollbars="vertical"
-        android:maxLength="800"
-        android:maxLines="20"
-        android:overScrollMode="always"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="0"
-        app:layout_constraintEnd_toStartOf="@+id/totalbyte"
-        app:layout_constraintBottom_toBottomOf="@+id/edtContent" />
+            <EditText
+                android:id="@+id/edtTitle"
+                android:layout_width="380dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/square_border"
+                android:hint="제목"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/totalbyte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text=" / 800byte"
-        app:layout_constraintBottom_toBottomOf="@+id/edtContent"
-        app:layout_constraintEnd_toEndOf="@+id/edtContent" />
+            <EditText
+                android:id="@+id/edtContent"
+                android:layout_width="380dp"
+                android:layout_height="400dp"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/square_border"
+                android:gravity="start"
+                android:hint="내용"
+                android:maxLength="800"
+                android:maxLines="20"
+                android:overScrollMode="always"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/finBtn"
-        android:layout_width="200dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="10dp"
-        android:text="완료"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtContent" />
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/edtContent"
+                app:layout_constraintEnd_toStartOf="@+id/totalbyte" />
 
+            <TextView
+                android:id="@+id/totalbyte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=" / 800byte"
+                app:layout_constraintBottom_toBottomOf="@+id/edtContent"
+                app:layout_constraintEnd_toEndOf="@+id/edtContent" />
+
+            <Button
+                android:id="@+id/finBtn"
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:text="완료"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="18sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtContent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

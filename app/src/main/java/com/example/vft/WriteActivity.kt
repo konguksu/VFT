@@ -25,6 +25,7 @@ class WriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
 
+        val nickName = findViewById<TextView>(R.id.nickName)
         val exitBtn = findViewById<Button>(R.id.exitBtn)
         val edtTitle = findViewById<EditText>(R.id.edtTitle)
         val edtContent = findViewById<EditText>(R.id.edtContent)
@@ -33,6 +34,8 @@ class WriteActivity : AppCompatActivity() {
 
         db = Firebase.firestore
         val userID = Firebase.auth.currentUser!!.email //유저 이메일(아이디)
+
+        //**데이터베이스에서 닉네임 가져와서 띄우기**
 
         exitBtn.setOnClickListener {
             val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_write_quit, null)
@@ -68,49 +71,52 @@ class WriteActivity : AppCompatActivity() {
             override fun afterTextChanged(editable: Editable) {}
         })
 
+        //완료 버튼
         finBtn.setOnClickListener {
-            val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_write_finish, null)
-
-            val dlg = AlertDialog.Builder(this).setView(dlgView)
-
-            val alertDialog = dlg.create()
-            alertDialog.show()
-
-            val continueBtn: Button = dlgView.findViewById(R.id.continueBtn)
-            val quitBtn: Button = dlgView.findViewById(R.id.quitBtn)
-
-            //대화상자 - 더 작성하기 버튼
-            continueBtn.setOnClickListener {
-                //제목과 내용 초기화
-//                    edtTitle.text = null
-//                    edtContent.text = null
-
-                //대화상자를 끄고 작성하던 글을 이어서 작성
-                alertDialog.dismiss()
+            //제목 입력 안된 경우
+            if (edtTitle.text.toString() == "") {
+                Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
+            //고민 내용 입력 안된 경우
+            else if (edtContent.text.toString() == "") {
+                Toast.makeText(this, "고민을 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+            //제목, 고민 둘 다 입력된 경우
+            else {
+                //고민 데이터 해시맵으로
+                val troubleData = hashMapOf(
+                        "userID" to userID,
+                        "title" to edtTitle.text.toString(),
+                        "Content" to edtContent.text.toString(),
+                        "writeDate" to FieldValue.serverTimestamp(),
+                        "Comment" to ""
+                )
+                //troubleList 데이터베이스에 등록
+                db.collection("troubleList").document().set(troubleData)
 
-            //대화상자 - 연어 주기 버튼
-            quitBtn.setOnClickListener {
-                //제목 입력 안된 경우
-                if (edtTitle.text.toString() == "") {
-                    Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+                //대화상자
+                val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_write_finish, null)
+
+                val dlg = AlertDialog.Builder(this).setView(dlgView)
+
+                val alertDialog = dlg.create()
+                alertDialog.show()
+
+                val continueBtn: Button = dlgView.findViewById(R.id.continueBtn)
+                val quitBtn: Button = dlgView.findViewById(R.id.quitBtn)
+
+                //대화상자 - 더 작성하기 버튼
+                continueBtn.setOnClickListener {
+                    //제목과 내용 초기화
+                    edtTitle.text = null
+                    edtContent.text = null
+
+                    //대화상자 닫기
+                    alertDialog.dismiss()
                 }
-                //고민 내용 입력 안된 경우
-                else if (edtContent.text.toString() == "") {
-                    Toast.makeText(this, "고민을 입력해주세요", Toast.LENGTH_SHORT).show()
-                }
-                //제목, 고민 둘 다 입력된 경우
-                else {
-                    //고민 데이터 해시맵으로
-                    val troubleData = hashMapOf(
-                            "userID" to userID,
-                            "title" to edtTitle.text.toString(),
-                            "Content" to edtContent.text.toString(),
-                            "writeDate" to FieldValue.serverTimestamp(),
-                            "Comment" to ""
-                    )
-                    //troubleList 데이터베이스에 등록
-                    db.collection("troubleList").document().set(troubleData)
+
+                //대화상자 - 연어 주기 버튼
+                quitBtn.setOnClickListener {
 
                     // 메인 화면으로 이동
                     startActivity(Intent(this, MainScreenActivity::class.java))
