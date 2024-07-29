@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="salmon_900">#FFF35014</color>
     <color name="salmon_700">#FFFC8358</color>
     <color name="salmon_500">#FFF7A888</color>
     <color name="salmon_300">#FFF1CDB9</color>
@@ -11,7 +12,7 @@
     <color name="black">#FF000000</color>
     <color name="gray_900">#FF222222</color>
     <color name="gray_800">#FF4C4C4C</color>
-    <color name="gray_600">#FF72272</color>
+    <color name="gray_600">#FF727272</color>
     <color name="gray_400">#FF929292</color>
     <color name="gray_300">#FFB6B6B6</color>
     <color name="gray_200">#FFCFCFCF</color>

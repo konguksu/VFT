@@ -10,45 +10,46 @@
         android:id="@+id/edtId"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/color_line"
         android:ems="10"
         android:hint="아이디를 입력하세요."
         android:inputType="textPersonName"
         android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtPass"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginTop="300dp"
         android:background="@drawable/color_line"
         android:ems="10"
         android:hint="비밀번호를 입력하세요."
         android:inputType="textPassword"
         android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnOk"
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_marginBottom="208dp"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/button_color_salmon700"
         android:text="로그인"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

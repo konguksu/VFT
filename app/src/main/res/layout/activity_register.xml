@@ -5,114 +5,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/logInText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="39dp"
-        android:text="회원가입"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/edtId"
+    <EditText
+        android:id="@+id/edtId"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/color_line"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textPersonName"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="34dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
         android:id="@+id/edtName"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/color_line"
         android:ems="10"
-        android:hint="사용할 닉네임"
+        android:hint="닉네임"
         android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInText" />
-
-    <EditText
-        android:id="@+id/edtId"
-        android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/color_line"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:hint="사용할 아이디(이메일)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtPass"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="289dp"
+        android:layout_marginTop="300dp"
         android:background="@drawable/color_line"
         android:ems="10"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:hint="사용할 비밀번호(6자 이상)"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="비밀번호"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtPassRe"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginTop="360dp"
         android:background="@drawable/color_line"
         android:ems="10"
         android:inputType="textPassword"
         android:padding="15dp"
         android:hint="비밀번호 재입력"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInText" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnStart"
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_marginBottom="160dp"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/button_color_salmon700"
         android:text="시작하기"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnCheck"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="183dp"
+        android:background="@drawable/button_color_salmon300"
         android:text="중복확인"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/edtPass"
-        app:layout_constraintEnd_toEndOf="@+id/edtPass"
+        android:textColor="@color/salmon_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
