@@ -21,11 +21,6 @@ class ListAdapter (private val context: Context, private val itemList: ArrayList
         return view
     }
 
-    fun addItem(item: ListItem) {
-        itemList.add(item)
-        notifyDataSetChanged()
-    }
-
     override fun getCount(): Int {
         return itemList.size
     }
@@ -37,7 +32,4 @@ class ListAdapter (private val context: Context, private val itemList: ArrayList
     override fun getItemId(position: Int): Long {
         return 0
     }
-
-
-
 }

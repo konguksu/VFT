@@ -3,9 +3,6 @@ package com.example.vft
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -25,8 +22,8 @@ class CommentActivity : AppCompatActivity(){
 
     private lateinit var exitBtn: Button
     private lateinit var finBtn: Button
-    private lateinit var edtTitle:EditText
-    private lateinit var edtContent:EditText
+    private lateinit var edtTitle:TextView
+    private lateinit var edtContent:TextView
     private lateinit var edtCount:TextView
     private lateinit var edtComment:EditText
 
@@ -87,7 +84,7 @@ class CommentActivity : AppCompatActivity(){
             }
             //코멘트 입력된 경우
             else {
-                //대화상자 띄우기
+                //대화상자
                 val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_comment_finish, null)
 
                 val dlg = AlertDialog.Builder(this).setView(dlgView)
@@ -104,7 +101,7 @@ class CommentActivity : AppCompatActivity(){
                     db.collection("troubleList").document(docId).update("Comment",edtComment.text.toString())
                     //성장도 데이터베이스 업데이트
                     updateGrowthDB()
-                    //대화상자를 끄고 작성하던 글을 이어서 작성
+                    //코멘트 작성하지 않은 고민 리스트로 돌아가기
                     startActivity(Intent(this, ListActivity::class.java))
                     finish()
                 }

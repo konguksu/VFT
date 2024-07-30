@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -24,6 +24,7 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        val nickName = findViewById<TextView>(R.id.nickName)
         val exitBtn = findViewById<Button>(R.id.exitBtn)
         val listView = findViewById<ListView>(R.id.listView)
         val viewAllBtn = findViewById<Button>(R.id.viewAllBtn) //고민목록전체로 이동
@@ -37,6 +38,9 @@ class ListActivity : AppCompatActivity() {
         // 데이터 가져오기
         fetchDataFromFirestore()
 
+        //**데이터베이스에서 닉네임 가져와서 띄우기**
+
+        //종료버튼
         exitBtn.setOnClickListener {
             // 메인 화면으로 이동
             startActivity(Intent(this, MainScreenActivity::class.java))
@@ -82,5 +86,4 @@ class ListActivity : AppCompatActivity() {
                     }
                 }
     }
-
 }

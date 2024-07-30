@@ -1,5 +1,4 @@
 package com.example.vft
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -41,6 +40,8 @@ class WriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
 
+
+        val nickName = findViewById<TextView>(R.id.nickName)
         exitBtn = findViewById<Button>(R.id.exitBtn)
         edtTitle = findViewById(R.id.edtTitle)
         edtContent = findViewById(R.id.edtContent)
@@ -49,6 +50,8 @@ class WriteActivity : AppCompatActivity() {
 
         db = Firebase.firestore
         userID = Firebase.auth.currentUser!!.email.toString() //유저 이메일(아이디)
+
+        //**데이터베이스에서 닉네임 가져와서 띄우기**
 
         exitBtn.setOnClickListener {
             val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_write_quit, null)
@@ -84,6 +87,7 @@ class WriteActivity : AppCompatActivity() {
             override fun afterTextChanged(editable: Editable) {}
         })
 
+        //완료 버튼
         finBtn.setOnClickListener {
             //제목 입력 안된 경우
             if (edtTitle.text.toString() == "") {

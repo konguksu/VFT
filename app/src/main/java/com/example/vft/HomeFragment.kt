@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -19,6 +21,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment(){
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +34,19 @@ class HomeFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val writeBtn: Button = view.findViewById<Button>(R.id.writeBtn)
-        val listBtn: Button = view.findViewById<Button>(R.id.listBtn)
+        val nickName: TextView = view.findViewById(R.id.nickName)
+        val salmonProg: ProgressBar = view.findViewById(R.id.salmonProg)
+        val numSalmon: TextView = view.findViewById(R.id.numSalmon)
+        val honeyProg: ProgressBar = view.findViewById(R.id.honeyProg)
+        val numHoney: TextView = view.findViewById(R.id.numHoney)
+        val writeBtn: Button = view.findViewById(R.id.writeBtn)
+        val listBtn: Button = view.findViewById(R.id.listBtn)
+
+        //**데이터베이스에서 닉네임 가져와서 띄우기**
+
+        //**연어 프로그래스바 관련 코드**
+
+        //**꿀 프로그래스바 관련 코드**
 
         writeBtn.setOnClickListener {
             val intent = Intent(activity, WriteActivity::class.java)
