@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
 
@@ -50,11 +51,17 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        //고민 전체 리스트 이동 버튼
+        viewAllBtn.setOnClickListener {
+            //**코드 추가
+        }
     }
 
     //데이터베이스에서 해당 유저가 작성한 글 가져와서 리스트에 띄우기
     private fun fetchDataFromFirestore() {
-        db.collection("troubleList").whereEqualTo("userID",userID).whereEqualTo("Comment","")
+        db.collection("troubleList")
+                .whereEqualTo("userID",userID).whereEqualTo("Comment","") //유저 아이디 일치, 코멘트 없는 고민
                 .addSnapshotListener { snapshot: QuerySnapshot?, exception ->
                     if (exception != null) {
                         // Handle the error

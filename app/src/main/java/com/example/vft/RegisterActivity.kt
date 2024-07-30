@@ -18,13 +18,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
+val DAILY_LIMIT = 10
+
 class RegisterActivity : AppCompatActivity() {
 
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    private var isIDAvailable = false
+    private var isIDAvailable = false //아이디 중복 검사
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,8 +83,6 @@ class RegisterActivity : AppCompatActivity() {
             val pwdCheck = edtPwdCheck.text.toString().trim()
             val nickname = edtNickName.text.toString().trim()
 
-
-
             //중복 확인 통과했는지 검사
             if (!isIDAvailable) {
                 Toast.makeText(this, "아이디 중복 확인 필요", Toast.LENGTH_SHORT).show()
@@ -108,8 +108,25 @@ class RegisterActivity : AppCompatActivity() {
                                 "nickname" to nickname,
                                 "joinDate" to FieldValue.serverTimestamp(),
                         )
+                        //하루 성장도 제한 해시맵으로
+                        val dailyLimit = hashMapOf(
+                                "ID" to ID,
+                                "dailyLimit" to DAILY_LIMIT,
+                                "lastUpdated" to FieldValue.serverTimestamp()
+                        )
+                        //성장도 해시맵으로
+                        val growthInfo = hashMapOf(
+                                "ID" to ID,
+                                "growth" to 0,
+                                "startDate" to FieldValue.serverTimestamp(),
+                                "endDate" to null
+                        )
                         //userInfo 데이터베이스에 등록
                         db.collection("userInfo").document(ID).set(userInfo)
+                        //하루 성장도 제한 데이터베이스에 등록
+                        db.collection("dailyLimit").document(ID).set(dailyLimit)
+                        //성장 정보 데이터베이스 등록
+                        db.collection("growthInfo").document().set(growthInfo)
 
                         Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show()
                         auth.signOut() //자동으로 로그인 되므로 우선 로그아웃
