@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
 
@@ -29,7 +28,7 @@ class ListActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.listView)
         val viewAllBtn = findViewById<Button>(R.id.viewAllBtn) //고민목록전체로 이동
 
-        adapter = ListAdapter(this, itemList)
+        adapter = ListAdapter(this, itemList, 1)
         listView.adapter = adapter
 
         db = FirebaseFirestore.getInstance()
@@ -58,7 +57,7 @@ class ListActivity : AppCompatActivity() {
 
         //고민 전체 리스트 이동 버튼
         viewAllBtn.setOnClickListener {
-            //**코드 추가
+            //**코드 추가**
         }
     }
 

@@ -1,9 +1,11 @@
 package com.example.vft
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -41,7 +43,12 @@ class DashBoardFragment : Fragment() {
 
         //**꿀 프로그래스바 관련 코드**
 
-        //**일러스트 클릭 시 통계화면_아카이빙으로 이동**
+        //**일러스트 클릭 시 통계-아카이빙으로 이동**
+//        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+//            val selectedItem = illustList[position]
+//            val intent = Intent(requireContext(), ArchivingActivity::class.java)
+//            startActivity(intent)
+//        }
 
         //**성장 조건 충족 시 데이터베이스에서 일러스트 가져와서 리스트에 이미지 추가**
     }

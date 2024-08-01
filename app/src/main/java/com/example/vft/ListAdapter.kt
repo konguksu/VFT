@@ -7,16 +7,37 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class ListAdapter (private val context: Context, private val itemList: ArrayList<ListItem>) : BaseAdapter() {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view:View = LayoutInflater.from(context).inflate(R.layout.list_item, null)
+class ListAdapter(
+        private val context: Context,
+        private val itemList: ArrayList<ListItem>,
+        private val layoutType: Int
+) : BaseAdapter() {
 
-        val itemTitle = view.findViewById<TextView>(R.id.itemTitle)
-        val itemContent = view.findViewById<TextView>(R.id.itemContent)
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        // 레이아웃 선택
+        val layoutResId = if (layoutType == 1) {
+            R.layout.write_item
+        } else {
+            R.layout.comment_item
+        }
+
+        // convertView가 null이면 새로운 뷰 인플레이트
+        val view: View = convertView ?: LayoutInflater.from(context).inflate(layoutResId, parent, false)
+
+        // ViewHolder 패턴을 사용하여 성능 최적화
+        val viewHolder: ViewHolder = if (convertView == null) {
+            val holder = ViewHolder()
+            holder.itemTitle = view.findViewById(R.id.itemTitle)
+            holder.itemContent = view.findViewById(R.id.itemContent)
+            view.tag = holder
+            holder
+        } else {
+            view.tag as ViewHolder
+        }
 
         val item = itemList[position]
-        itemTitle.text = item.itemTitle
-        itemContent.text = item.itemContent
+        viewHolder.itemTitle?.text = item.itemTitle
+        viewHolder.itemContent?.text = item.itemContent
 
         return view
     }
@@ -30,6 +51,12 @@ class ListAdapter (private val context: Context, private val itemList: ArrayList
     }
 
     override fun getItemId(position: Int): Long {
-        return 0
+        return position.toLong()
+    }
+
+    // ViewHolder 클래스 정의
+    private class ViewHolder {
+        var itemTitle: TextView? = null
+        var itemContent: TextView? = null
     }
 }

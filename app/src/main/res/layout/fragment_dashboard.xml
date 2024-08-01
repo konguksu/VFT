@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".DashBoardFragment">
 
     <ImageView
         android:id="@+id/logo"
@@ -44,7 +44,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" >
 
             <!--  연어 프로그래스바  -->
             <ProgressBar
@@ -157,13 +157,15 @@
                 app:layout_constraintTop_toTopOf="@+id/honeyProg" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="230dp"
+                android:layout_marginBottom="250dp"
                 android:text="아직 열람 가능한 기록이 없어요!"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:layout_marginTop="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/honeyProg" />
@@ -173,7 +175,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/honeyProg" />
         </androidx.constraintlayout.widget.ConstraintLayout>

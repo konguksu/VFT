@@ -25,6 +25,8 @@
         <activity android:name=".WriteActivity"/>\
         <activity android:name=".ListActivity"/>
         <activity android:name=".CommentActivity"/>
+        <activity android:name=".ArchivingActivity"/>
+        <activity android:name=".ListIndivActivity"/>
     </application>
 
 </manifest>
