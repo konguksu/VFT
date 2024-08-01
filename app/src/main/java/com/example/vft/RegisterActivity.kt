@@ -18,7 +18,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
-val DAILY_LIMIT = 10
+const val DAILY_LIMIT = 20
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -54,26 +54,32 @@ class RegisterActivity : AppCompatActivity() {
         btnIdCheck.setOnClickListener {
             val ID = edtID.text.toString().trim()
 
-            //userInfo 데이터베이스 검색해서 같은 ID 존재하는지 검사
-            db.collection("userInfo").whereEqualTo("ID", ID).get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val document = task.result
-                    //같은 ID 존재할 시
-                    if (document!!.size() != 0) {
-                        Toast.makeText(this, "존재하는 이메일", Toast.LENGTH_SHORT).show()
-                    }
-                    //같은 ID 없으면 isIDAvailable true로
-                    else {
-                        isIDAvailable = true
-                        Toast.makeText(this, "사용 가능한 이메일", Toast.LENGTH_SHORT).show()
+            if(ID != ""){
+                //userInfo 데이터베이스 검색해서 같은 ID 존재하는지 검사
+                db.collection("userInfo").whereEqualTo("ID", ID).get().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        //같은 ID 존재할 시
+                        if (document!!.size() != 0) {
+                            Toast.makeText(this, "사용 불가능한 이메일", Toast.LENGTH_SHORT).show()
+                        }
+                        //같은 ID 없으면 isIDAvailable true로
+                        else {
+                            isIDAvailable = true
+                            Toast.makeText(this, "사용 가능한 이메일", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Log.d("RegisterActivity", "Cached get failed: ", task.exception)
                     }
 
-                } else {
-                    Log.d("RegisterActivity", "Cached get failed: ", task.exception)
+
                 }
-
-
             }
+            else{
+                Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         //가입 버튼(시작하기 버튼)
@@ -86,6 +92,10 @@ class RegisterActivity : AppCompatActivity() {
             //중복 확인 통과했는지 검사
             if (!isIDAvailable) {
                 Toast.makeText(this, "아이디 중복 확인 필요", Toast.LENGTH_SHORT).show()
+            }
+            //닉네임 입력 확인
+            else if (nickname == ""){
+                Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
             //비밀번호 패턴 일치 검사
             else if (!isPwdOk(pwd)){
