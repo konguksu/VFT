@@ -2,6 +2,7 @@ package com.example.vft
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.ListView
@@ -38,7 +39,14 @@ class ListActivity : AppCompatActivity() {
         // 데이터 가져오기
         fetchDataFromFirestore()
 
-        //**데이터베이스에서 닉네임 가져와서 띄우기**
+        //데이터베이스에서 닉네임 가져와서 띄우기
+        db.collection("userInfo").document(userID).get().addOnSuccessListener {document ->
+            if (document != null) {
+                nickName.text = document.getString("nickname").toString()
+            }
+        }.addOnFailureListener { exception ->
+            Log.w("ListActivity", "fetchDataFail", exception)
+        }
 
         //종료버튼
         exitBtn.setOnClickListener {
@@ -68,8 +76,7 @@ class ListActivity : AppCompatActivity() {
                 .whereEqualTo("userID",userID).whereEqualTo("Comment","") //유저 아이디 일치, 코멘트 없는 고민
                 .addSnapshotListener { snapshot: QuerySnapshot?, exception ->
                     if (exception != null) {
-                        // Handle the error
-                        return@addSnapshotListener
+                        Log.w("ListActivity", "fetchDataFail", exception)
                     }
 
                     if (snapshot != null) {
