@@ -129,10 +129,10 @@ class DashBoardFragment : Fragment() {
                                 val startDate = document.getTimestamp("startDate")!!
                                 val endDate = document.getTimestamp("endDate")!!
                                 when(count % 4){
-                                    0 -> illustList.add(IllustItem(R.drawable.gom1_spring,startDate,endDate))
-                                    1 -> illustList.add(IllustItem(R.drawable.gom2_summer,startDate,endDate))
-                                    2 -> illustList.add(IllustItem(R.drawable.gom3_autumn,startDate,endDate))
-                                    3 -> illustList.add(IllustItem(R.drawable.gom4_winter,startDate,endDate))
+                                    0 -> illustList.add(IllustItem(R.drawable.il_gom1spring,startDate,endDate))
+                                    1 -> illustList.add(IllustItem(R.drawable.il_gom2summer,startDate,endDate))
+                                    2 -> illustList.add(IllustItem(R.drawable.il_gom3autumn,startDate,endDate))
+                                    3 -> illustList.add(IllustItem(R.drawable.il_gom4winter,startDate,endDate))
                                 }
                             }
                         }
