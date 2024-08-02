@@ -26,6 +26,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import kotlin.random.Random
 
 class MyPageFragment : Fragment() {
 
@@ -66,6 +67,16 @@ class MyPageFragment : Fragment() {
         }
 
         //프로필 이미지 설정
+        val drawableResources = arrayOf(
+            R.drawable.ic_profile1,
+            R.drawable.ic_profile2,
+            R.drawable.ic_profile3,
+            R.drawable.ic_profile4
+        )
+        val randomIndex = Random.nextInt(drawableResources.size)
+        val randomDrawable = drawableResources[randomIndex]
+        
+        profileImg.setImageResource(randomDrawable)
 
         //함께한지 00일
 
