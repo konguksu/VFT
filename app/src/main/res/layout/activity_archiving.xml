@@ -57,12 +57,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/writeMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
+                android:background="#00ff0000"
                 android:text="더보기 >"
                 android:textColor="@color/black"
                 android:textSize="13dp"
@@ -72,7 +73,7 @@
             <ListView
                 android:id="@+id/writeList"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="320dp"
                 android:paddingTop="55dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,12 +91,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/commentList" />
 
-            <TextView
+            <Button
                 android:id="@+id/commentMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
+                android:background="#00ff0000"
                 android:text="더보기 >"
                 android:textColor="@color/black"
                 android:textSize="13dp"
@@ -105,7 +107,7 @@
             <ListView
                 android:id="@+id/commentList"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="20dp"
                 android:paddingTop="55dp"
                 app:layout_constraintBottom_toBottomOf="parent"
