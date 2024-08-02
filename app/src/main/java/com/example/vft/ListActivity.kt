@@ -27,7 +27,6 @@ class ListActivity : AppCompatActivity() {
         val nickName = findViewById<TextView>(R.id.nickName)
         val exitBtn = findViewById<Button>(R.id.exitBtn)
         val listView = findViewById<ListView>(R.id.listView)
-        val viewAllBtn = findViewById<Button>(R.id.viewAllBtn) //고민목록전체로 이동
 
         adapter = ListAdapter(this, itemList, 1)
         listView.adapter = adapter
@@ -61,11 +60,6 @@ class ListActivity : AppCompatActivity() {
             intent.putExtra("id",selectedItem.itemID)
             startActivity(intent)
             finish()
-        }
-
-        //고민 전체 리스트 이동 버튼
-        viewAllBtn.setOnClickListener {
-            //**코드 추가**
         }
     }
 
