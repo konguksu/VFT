@@ -66,7 +66,6 @@ class MyPageFragment : Fragment() {
         }
 
         //프로필 이미지 설정
-        profileImg
 
         //함께한지 00일
 
