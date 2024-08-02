@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text=" 님 안녕하세요!"
+        android:text=" 님의 고민으로 키워낸 곰들이에요!"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/nickName"
         app:layout_constraintTop_toTopOf="parent" />
