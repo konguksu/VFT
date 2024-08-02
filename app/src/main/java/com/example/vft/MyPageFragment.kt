@@ -66,7 +66,7 @@ class MyPageFragment : Fragment() {
             Log.w("MyPageFragment", "fetchDataFail", exception)
         }
 
-        //프로필 이미지 설정
+        //프로필 이미지 설정(임시 / 현재코드 : 마이페이지 접근마다 랜덤)
         val drawableResources = arrayOf(
             R.drawable.ic_profile1,
             R.drawable.ic_profile2,
@@ -75,7 +75,7 @@ class MyPageFragment : Fragment() {
         )
         val randomIndex = Random.nextInt(drawableResources.size)
         val randomDrawable = drawableResources[randomIndex]
-        
+
         profileImg.setImageResource(randomDrawable)
 
         //함께한지 00일
