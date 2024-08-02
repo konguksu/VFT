@@ -99,30 +99,30 @@ class MyPageFragment : Fragment() {
 
         //로그아웃 버튼
         logout.setOnClickListener {
-            // 다이얼로그 생성
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("로그아웃")
-            builder.setMessage("로그아웃 하시겠습니까?")
+            val dlgView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_logout, null)
+            val dlg = AlertDialog.Builder(requireContext()).setView(dlgView)
 
-            // 예 -> 로그아웃
-            builder.setPositiveButton("예") { dialog, _ ->
+            val alertDialog = dlg.create()
+            alertDialog.show()
+
+            val yesBtn: Button = dlgView.findViewById(R.id.yes)
+            val noBtn: Button = dlgView.findViewById(R.id.no)
+
+            yesBtn.setOnClickListener {
+                alertDialog.dismiss()
                 FirebaseAuth.getInstance().signOut()
 
-                // 온보딩 화면으로 이동
                 val intent = Intent(requireContext(), OnBordingActivity::class.java)
                 startActivity(intent)
+
                 requireActivity().finish()
 
                 Toast.makeText(requireContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
             }
 
-            // 아니오 -> 다이얼로그 닫기
-            builder.setNegativeButton("아니오") { dialog, _ ->
-                dialog.dismiss()
+            noBtn.setOnClickListener {
+                alertDialog.dismiss()
             }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
         }
     }
 
