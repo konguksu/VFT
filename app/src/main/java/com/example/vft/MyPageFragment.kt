@@ -1,7 +1,5 @@
 package com.example.vft
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -59,35 +55,7 @@ class MyPageFragment : Fragment() {
 
         //프로필 이미지 설정
         //날짜 설정
-
         //로그아웃 버튼
-        logout.setOnClickListener {
-            // 다이얼로그 생성
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("로그아웃")
-            builder.setMessage("로그아웃 하시겠습니까?")
-
-            // 예 -> 로그아웃
-            builder.setPositiveButton("예") { dialog, _ ->
-                FirebaseAuth.getInstance().signOut()
-
-                // 온보딩 화면으로 이동
-                val intent = Intent(requireContext(), OnBordingActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
-
-                Toast.makeText(requireContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            // 아니오 -> 다이얼로그 닫기
-            builder.setNegativeButton("아니오") { dialog, _ ->
-                dialog.dismiss()
-            }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-        }
-
         //캘린더 커스터마이징
     }
 }
