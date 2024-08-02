@@ -1,0 +1,18 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 위쪽 반원 -->
+    <item android:top="2dp" android:bottom="15dp" android:start="12dp" >
+        <shape android:shape="rectangle">
+            <size android:width="20dp" android:height="20dp"/>
+            <solid android:color="@color/salmon_300"/>
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+    <!-- 아래쪽 반원 -->
+    <item android:top="15dp" android:bottom="2dp" android:end="12dp">
+        <shape android:shape="rectangle">
+            <size android:width="20dp" android:height="20dp"/>
+            <solid android:color="@color/honey_300"/>
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+</layer-list>
