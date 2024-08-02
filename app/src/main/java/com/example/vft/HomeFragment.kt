@@ -14,13 +14,13 @@ import android.widget.TextView
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -95,20 +95,22 @@ class HomeFragment : Fragment(){
                 val growth = document.getLong("growth")
 
                 //**성장도 체크해서 이미지 변경하는 코드 추가** 0/20/40/60/80
-                if(growth!! >= 80){
-                    image.setImageResource(R.drawable.ch0)
-                }
-                else if(growth >= 60){
-                    image.setImageResource(R.drawable.ch1)
-                }
-                else if(growth >= 40){
-                    image.setImageResource(R.drawable.ch0)
-                }
-                else if(growth >= 20){
-                    image.setImageResource(R.drawable.ch1)
-                }
-                else {
-                    image.setImageResource(R.drawable.ch1)
+                when {
+                    growth!! >= 80 -> {
+                        image.setImageResource(R.drawable.ch0)
+                    }
+                    growth >= 60 -> {
+                        image.setImageResource(R.drawable.ch1)
+                    }
+                    growth >= 40 -> {
+                        image.setImageResource(R.drawable.ch0)
+                    }
+                    growth >= 20 -> {
+                        image.setImageResource(R.drawable.ch1)
+                    }
+                    else -> {
+                        image.setImageResource(R.drawable.ch1)
+                    }
                 }
 
             } else {
@@ -123,7 +125,7 @@ class HomeFragment : Fragment(){
 
 
     //데이터베이스에서 해당 유저가 작성한 고민, 코멘트 개수 불러오기(일러스트 해금하면 초기화)
-    private fun fetchNumFromFirestore(startDate:com.google.firebase.Timestamp) {
+    private fun fetchNumFromFirestore(startDate:Timestamp) {
         var countWrite = 0
         var countComment = 0
 
@@ -174,25 +176,6 @@ class HomeFragment : Fragment(){
                         countComment = 0
                     }
                 }
-
-    }
-
-    private fun fetchStartDateAndNum(){
-        //현재 활성화한 성장도 데이터 불러오기
-        val query = db.collection("growthInfo")
-                .whereEqualTo("ID",userID)
-                .whereLessThan("growth",100)
-
-        query.get().addOnSuccessListener { querySnapshot ->
-            if (!querySnapshot.isEmpty) {
-                val document = querySnapshot.documents[0] // 첫 번째 도큐먼트 가져오기
-                fetchNumFromFirestore(document.getTimestamp("startDate")!!) //성장 시작 날짜
-            } else {
-                Log.w("HomeFragment", "No documents found")
-            }
-        }.addOnFailureListener { e ->
-            Log.w("HomeFragment", "fetchGrowthDataFail", e)
-        }
 
     }
 

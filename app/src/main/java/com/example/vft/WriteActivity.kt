@@ -210,11 +210,13 @@ class WriteActivity : AppCompatActivity() {
                 //dailyLimit가 고민 작성 후 얻는 값보다 많이 남았을 때
                 if(limitLeft > writeValue){
                     docReference.update("growth", FieldValue.increment(writeValue))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",FieldValue.increment(-writeValue))
                 }
                 //dailyLimit가 고민 작성 후 얻는 값보다 같거나 적게 남았을 때
                 else{
                     docReference.update("growth", FieldValue.increment(limitLeft))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",0)
                     Toast.makeText(this,"하루 성장 최대치를 도달하였습니다",Toast.LENGTH_SHORT).show()
                 }
