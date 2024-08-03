@@ -64,18 +64,8 @@
         android:id="@+id/numSalmon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
-        app:layout_constraintEnd_toStartOf="@+id/maxSalmon"
-        app:layout_constraintTop_toTopOf="@+id/salmonProg" />
-
-    <TextView
-        android:id="@+id/maxSalmon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="/7"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
         app:layout_constraintEnd_toEndOf="@+id/salmonProg"
         app:layout_constraintTop_toTopOf="@+id/salmonProg" />
@@ -108,21 +98,12 @@
         android:id="@+id/numHoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
-        app:layout_constraintEnd_toStartOf="@+id/maxHoney"
-        app:layout_constraintTop_toTopOf="@+id/honeyProg" />
-
-    <TextView
-        android:id="@+id/maxHoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="/7"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
         app:layout_constraintEnd_toEndOf="@+id/honeyProg"
         app:layout_constraintTop_toTopOf="@+id/honeyProg" />
+
 
     <ImageView
         android:id="@+id/mainImg"
