@@ -31,7 +31,6 @@ class CommentActivity : AppCompatActivity(){
     private lateinit var db: FirebaseFirestore
     private lateinit var docId: String
     private lateinit var userID: String
-    private var limitLeft: Long = 0
 
     private val writeValue: Long = 5 //코멘트 작성 성장값
 
@@ -63,6 +62,7 @@ class CommentActivity : AppCompatActivity(){
             val noBtn: Button = dlgView.findViewById(R.id.noBtn)
 
             yesBtn.setOnClickListener {
+                alertDialog.dismiss()
                 // 메인 화면으로 이동
                 startActivity(Intent(this, ListActivity::class.java))
                 finish()
@@ -98,10 +98,12 @@ class CommentActivity : AppCompatActivity(){
 
                 //대화상자 - 더 작성하기 버튼
                 continueBtn.setOnClickListener {
+                    alertDialog.dismiss()
                     //작성한 코멘트 데이터베이스에 등록
                     db.collection("troubleList").document(docId).update("Comment",edtComment.text.toString())
+                    db.collection("troubleList").document(docId).update("commentDate",FieldValue.serverTimestamp())
                     //성장도 데이터베이스 업데이트
-                    updateGrowthDB()
+                    resetLimitAndUpdateGrowth()
                     //코멘트 작성하지 않은 고민 리스트로 돌아가기
                     startActivity(Intent(this, ListActivity::class.java))
                     finish()
@@ -111,10 +113,9 @@ class CommentActivity : AppCompatActivity(){
                 quitBtn.setOnClickListener {
                     //작성한 코멘트 데이터베이스에 등록
                     db.collection("troubleList").document(docId).update("Comment",edtComment.text.toString())
+                    db.collection("troubleList").document(docId).update("commentDate",FieldValue.serverTimestamp())
                     //성장도 데이터베이스 업데이트
-                    updateGrowthDB()
-                    // 메인 화면으로 이동
-                    startActivity(Intent(this, MainScreenActivity::class.java))
+                    resetLimitAndUpdateGrowth()
                     finish()
                 }
             }
@@ -138,7 +139,7 @@ class CommentActivity : AppCompatActivity(){
     }
 
     //dailyLimit 초기화 되었는지 체크 & 초기화
-    private fun resetDailyLimit(){
+    private fun resetLimitAndUpdateGrowth(){
         val docRef = db.collection("dailyLimit").document(userID)
 
         docRef.get()
@@ -151,8 +152,11 @@ class CommentActivity : AppCompatActivity(){
                         if(current != lastUpdated){
                             docRef.update("dailyLimit",DAILY_LIMIT)
                             docRef.update("lastUpdated",FieldValue.serverTimestamp())
+                            updateGrowthDB(DAILY_LIMIT.toLong()) //growth db 갱신
                         }
-                        limitLeft = document.getLong("dailyLimit")!!
+                        else{
+                            updateGrowthDB(document.getLong("dailyLimit")!!)//growth db 갱신
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -170,8 +174,7 @@ class CommentActivity : AppCompatActivity(){
     }
 
     //성장도 데이터베이스 업데이트
-    private fun updateGrowthDB(){
-        resetDailyLimit()
+    private fun updateGrowthDB(limitLeft:Long){
         //조건에 맞는 도큐먼트 찾기
         val query = db.collection("growthInfo")
                 .whereEqualTo("ID",userID)
@@ -186,11 +189,13 @@ class CommentActivity : AppCompatActivity(){
                 //dailyLimit가 고민 작성 후 얻는 값보다 많이 남았을 때
                 if(limitLeft > writeValue){
                     docReference.update("growth", FieldValue.increment(writeValue))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",FieldValue.increment(-writeValue))
                 }
                 //dailyLimit가 고민 작성 후 얻는 값보다 같거나 적게 남았을 때
                 else{
                     docReference.update("growth", FieldValue.increment(limitLeft))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",0)
                     Toast.makeText(this,"하루 성장 최대치를 도달하였습니다",Toast.LENGTH_SHORT).show()
                 }

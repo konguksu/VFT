@@ -29,7 +29,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="7dp"
             android:layout_weight="1"
-            android:text="더 작성하기"
+            android:text="네! 더 작성할래요"
             android:textSize="14sp"
             android:background="@drawable/button_left"/>
 
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="꿀 주기"
+            android:text="아니요! 괜찮아요"
             android:textSize="14sp"
             android:background="@drawable/button_right"/>
 

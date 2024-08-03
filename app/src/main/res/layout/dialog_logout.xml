@@ -15,7 +15,7 @@
         android:gravity="center"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:text="연어를 얻었어요!\n더 작성 고곰?" />
+        android:text="로그아웃하시겠어요?" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,21 +24,21 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/continueBtn"
+            android:id="@+id/yes"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginEnd="7dp"
             android:layout_weight="1"
-            android:text="네! 더 작성할래요"
+            android:text="네"
             android:textSize="14sp"
             android:background="@drawable/button_left"/>
 
         <Button
-            android:id="@+id/quitBtn"
+            android:id="@+id/no"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="아니요! 괜찮아요"
+            android:text="아니오"
             android:textSize="14sp"
             android:background="@drawable/button_right"/>
 

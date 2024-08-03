@@ -32,14 +32,12 @@ class WriteActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var userID: String
-    private var limitLeft: Long = 0 // 현재 남은 성장 최대값
 
     private val writeValue: Long = 10 //고민 작성 성장값
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
-
 
         val nickName = findViewById<TextView>(R.id.nickName)
         exitBtn = findViewById<Button>(R.id.exitBtn)
@@ -51,8 +49,16 @@ class WriteActivity : AppCompatActivity() {
         db = Firebase.firestore
         userID = Firebase.auth.currentUser!!.email.toString() //유저 이메일(아이디)
 
-        //**데이터베이스에서 닉네임 가져와서 띄우기**
+        //데이터베이스에서 닉네임 가져와서 띄우기
+        db.collection("userInfo").document(userID).get().addOnSuccessListener {document ->
+            if (document != null) {
+                nickName.text = document.getString("nickname").toString()
+            }
+        }.addOnFailureListener { exception ->
+                    Log.w("WriteActivity", "fetchDataFail", exception)
+                }
 
+        //x 버튼
         exitBtn.setOnClickListener {
             val dlgView = LayoutInflater.from(this).inflate(R.layout.dialog_write_quit, null)
 
@@ -65,6 +71,7 @@ class WriteActivity : AppCompatActivity() {
             val noBtn: Button = dlgView.findViewById(R.id.noBtn)
 
             yesBtn.setOnClickListener {
+                alertDialog.dismiss()
                 // 메인 화면으로 이동
                 startActivity(Intent(this, MainScreenActivity::class.java))
                 finish()
@@ -75,7 +82,7 @@ class WriteActivity : AppCompatActivity() {
             }
         }
 
-        //내용 입력
+        //내용 입력 -> 글자 수 표시
         edtContent.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -113,7 +120,7 @@ class WriteActivity : AppCompatActivity() {
                 //대화상자 - 더 작성하기 버튼
                 continueBtn.setOnClickListener {
                     updateTroubleDB()
-                    updateGrowthDB()
+                    resetLimitAndUpdateGrowth()
                     //제목과 내용 초기화
                     edtTitle.text = null
                     edtContent.text = null
@@ -125,9 +132,12 @@ class WriteActivity : AppCompatActivity() {
                 //대화상자 - 연어 주기 버튼
                 quitBtn.setOnClickListener {
                     updateTroubleDB()
-                    updateGrowthDB()
+                    resetLimitAndUpdateGrowth()
                     // 메인 화면으로 이동
                     finish()
+
+                    //대화상자를 끄기
+                    alertDialog.dismiss()
                 }
 
             }
@@ -142,14 +152,15 @@ class WriteActivity : AppCompatActivity() {
                 "title" to edtTitle.text.toString(),
                 "Content" to edtContent.text.toString(),
                 "writeDate" to FieldValue.serverTimestamp(),
-                "Comment" to ""
+                "Comment" to "",
+                "commentDate" to null
         )
         //troubleList 데이터베이스에 등록
         db.collection("troubleList").document().set(troubleData)
     }
 
     //dailyLimit 초기화 되었는지 체크 & 초기화
-    private fun resetDailyLimit(){
+    private fun resetLimitAndUpdateGrowth(){
         val docRef = db.collection("dailyLimit").document(userID)
 
         docRef.get()
@@ -162,8 +173,11 @@ class WriteActivity : AppCompatActivity() {
                         if(current != lastUpdated){
                             docRef.update("dailyLimit",DAILY_LIMIT)
                             docRef.update("lastUpdated",FieldValue.serverTimestamp())
+                            updateGrowthDB(DAILY_LIMIT.toLong()) //growth db 갱신
                         }
-                        limitLeft = document.getLong("dailyLimit")!!
+                        else{
+                            updateGrowthDB(document.getLong("dailyLimit")!!)//growth db 갱신
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -171,6 +185,7 @@ class WriteActivity : AppCompatActivity() {
                 }
     }
 
+    //타임스탬프 -> yyyyMMdd로 포맷 변환
     @SuppressLint("SimpleDateFormat")
     private fun changeDateFormat(data: Date):String{
         val dateFormat = "yyyyMMdd"
@@ -180,8 +195,7 @@ class WriteActivity : AppCompatActivity() {
     }
 
     //성장도 데이터베이스 업데이트
-    private fun updateGrowthDB(){
-        resetDailyLimit()
+    private fun updateGrowthDB(limitLeft:Long){
         //조건에 맞는 도큐먼트 찾기
         val query = db.collection("growthInfo")
                 .whereEqualTo("ID",userID)
@@ -196,11 +210,13 @@ class WriteActivity : AppCompatActivity() {
                 //dailyLimit가 고민 작성 후 얻는 값보다 많이 남았을 때
                 if(limitLeft > writeValue){
                     docReference.update("growth", FieldValue.increment(writeValue))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",FieldValue.increment(-writeValue))
                 }
                 //dailyLimit가 고민 작성 후 얻는 값보다 같거나 적게 남았을 때
                 else{
                     docReference.update("growth", FieldValue.increment(limitLeft))
+                    if(firstDoc.getLong("growth")!! > 100){docReference.update("growth",100)}
                     db.collection("dailyLimit").document(userID).update("dailyLimit",0)
                     Toast.makeText(this,"하루 성장 최대치를 도달하였습니다",Toast.LENGTH_SHORT).show()
                 }

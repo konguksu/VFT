@@ -6,10 +6,12 @@
     <color name="salmon_300">#FFF1CDB9</color>
     <color name="salmon_200">#FFFFDECC</color>
     <color name="slamon_100">#FFFFEFE6</color>
+    <color name="salmon_alpha">#C0F7A888</color>
 
     <color name="honey_700">#FFFFC227</color>
-    <color name="honey_500">#FFD55D</color>
+    <color name="honey_500">#FFFFD55D</color>
     <color name="honey_300">#FFFFE893</color>
+    <color name="honey_alpha">#C0FFD55D</color>
 
     <color name="black">#FF000000</color>
     <color name="gray_900">#FF222222</color>
