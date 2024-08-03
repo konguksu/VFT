@@ -24,9 +24,7 @@ class DashBoardFragment : Fragment() {
     private lateinit var adapter: IllustAdapter
     private val illustList = arrayListOf<IllustItem>()
 
-    private lateinit var salmonProg: ProgressBar
     private lateinit var totalSalmon: TextView
-    private lateinit var honeyProg: ProgressBar
     private lateinit var totalHoney: TextView
     private lateinit var listView: ListView
     private lateinit var text:TextView
@@ -46,9 +44,7 @@ class DashBoardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val nickName: TextView = view.findViewById(R.id.nickName)
-        salmonProg = view.findViewById(R.id.salmonProg)
         totalSalmon= view.findViewById(R.id.totalSalmon)
-        honeyProg= view.findViewById(R.id.honeyProg)
         totalHoney= view.findViewById(R.id.totalHoney)
         listView= view.findViewById(R.id.listView)
         text = view.findViewById(R.id.text)
@@ -85,6 +81,7 @@ class DashBoardFragment : Fragment() {
 
     //데이터베이스에서 해당 유저가 작성한 고민, 코멘트 개수 불러오기
     private fun fetchNumFromFirestore() {
+
         //연어 프로그래스바 관련 코드
         db.collection("troubleList")
                 .whereEqualTo("userID",userID) //유저 아이디 일치, 고민
@@ -139,5 +136,6 @@ class DashBoardFragment : Fragment() {
                         adapter.notifyDataSetChanged()
                     }
                 }
+
     }
 }

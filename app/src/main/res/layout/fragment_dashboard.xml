@@ -36,6 +36,48 @@
         app:layout_constraintStart_toEndOf="@+id/nickName"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/salmonIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_salmon"
+        app:layout_constraintEnd_toStartOf="@id/totalSalmon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalSalmon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/honeyIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/honeyIcon"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_honey"
+        app:layout_constraintEnd_toStartOf="@id/totalHoney"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalHoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="15dp"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -44,131 +86,22 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <!--  연어 프로그래스바  -->
-            <ProgressBar
-                android:id="@+id/salmonProg"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="380dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="60dp"
-                android:max="9"
-                android:progress="1"
-                android:progressDrawable="@drawable/progressbar_salmon"
-                app:layout_constraintBottom_toTopOf="@+id/listView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/salmonIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_salmon"
-                app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
-                app:layout_constraintStart_toStartOf="@+id/salmonProg"
-                app:layout_constraintTop_toTopOf="@+id/salmonProg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="지금까지 "
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
-                app:layout_constraintStart_toEndOf="@+id/salmonIcon"
-                app:layout_constraintTop_toTopOf="@+id/salmonProg" />
-
-            <TextView
-                android:id="@+id/totalSalmon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="75dp"
-                android:text="00"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
-                app:layout_constraintStart_toEndOf="@+id/salmonIcon"
-                app:layout_constraintTop_toTopOf="@+id/salmonProg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="개의 연어를 주었어요!"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/salmonProg"
-                app:layout_constraintStart_toEndOf="@+id/totalSalmon"
-                app:layout_constraintTop_toTopOf="@+id/salmonProg" />
-
-            <!--  꿀 프로그래스바  -->
-            <ProgressBar
-                android:id="@+id/honeyProg"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="380dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="15dp"
-                android:max="9"
-                android:progress="1"
-                android:progressDrawable="@drawable/progressbar_honey"
-                app:layout_constraintBottom_toTopOf="@+id/listView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/honeyIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_honey"
-                app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
-                app:layout_constraintStart_toStartOf="@+id/honeyProg"
-                app:layout_constraintTop_toTopOf="@+id/honeyProg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="지금까지 "
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
-                app:layout_constraintStart_toEndOf="@+id/honeyIcon"
-                app:layout_constraintTop_toTopOf="@+id/honeyProg" />
-
-            <TextView
-                android:id="@+id/totalHoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="75dp"
-                android:text="00"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
-                app:layout_constraintStart_toEndOf="@+id/honeyIcon"
-                app:layout_constraintTop_toTopOf="@+id/honeyProg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="개의 꿀을 주었어요!"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/honeyProg"
-                app:layout_constraintStart_toEndOf="@+id/totalHoney"
-                app:layout_constraintTop_toTopOf="@+id/honeyProg" />
+            android:layout_height="match_parent" >
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="230dp"
-                android:layout_marginBottom="250dp"
+                android:layout_marginTop="270dp"
+                android:layout_marginBottom="300dp"
                 android:text="아직 열람 가능한 기록이 없어요!"
                 android:textColor="@color/black"
                 android:textSize="20dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/honeyProg" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ListView
                 android:id="@+id/listView"
@@ -177,9 +110,8 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/honeyProg" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
@@ -15,6 +16,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -55,6 +57,7 @@ class MyPageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -142,6 +145,7 @@ class MyPageFragment : Fragment() {
     }
 
     //고민, 코멘트 기록한 날짜 db에서 가져오기
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun fetchDate(){
         val query = db.collection("troubleList")
             .whereEqualTo("userID",userID)
