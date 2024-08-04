@@ -96,19 +96,19 @@ class HomeFragment : Fragment(){
                 //**성장도 체크해서 이미지 변경하는 코드 추가** 0/20/40/60/80
                 when {
                     growth!! >= 80 -> {
-                        image.setImageResource(R.drawable.ch0)
+                        image.setImageResource(R.drawable.ic_scr_bear2)
                     }
                     growth >= 60 -> {
-                        image.setImageResource(R.drawable.ch1)
+                        image.setImageResource(R.drawable.ic_scr_bear11)
                     }
                     growth >= 40 -> {
-                        image.setImageResource(R.drawable.ch0)
+                        image.setImageResource(R.drawable.ic_scr_bear9)
                     }
                     growth >= 20 -> {
-                        image.setImageResource(R.drawable.ch1)
+                        image.setImageResource(R.drawable.ic_scr_bear16)
                     }
                     else -> {
-                        image.setImageResource(R.drawable.ch1)
+                        image.setImageResource(R.drawable.ic_scr_bear12)
                     }
                 }
 
