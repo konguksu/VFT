@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:paddingTop="12dp">
 
     <ImageView
         android:id="@+id/logo"
@@ -20,8 +21,8 @@
         android:id="@+id/nickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="닉네임"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/logo"
@@ -30,19 +31,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         android:text=" 님의 요즘 고민은 무엇인가요?"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/nickName"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/exitBtn"
         android:layout_width="43dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:text="X"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_x"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,13 +65,14 @@
                 android:layout_width="380dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/square_border"
+                android:background="@color/white"
                 android:hint="제목"
                 android:maxLength="100"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="#984314"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,8 +81,8 @@
                 android:id="@+id/edtContent"
                 android:layout_width="380dp"
                 android:layout_height="400dp"
-                android:layout_marginTop="64dp"
-                android:background="@drawable/square_border"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/bear_stroke"
                 android:gravity="start"
                 android:hint="내용"
                 android:maxLength="800"
@@ -114,9 +120,12 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
                 android:text="완료"
+                android:textColor="@color/salmon_900"
+                android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="18sp"
                 app:cornerRadius="10dp"
+                android:backgroundTint="@color/salmon_300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"

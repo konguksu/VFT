@@ -7,10 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
@@ -24,7 +21,7 @@ import java.util.*
 
 class WriteActivity : AppCompatActivity() {
 
-    private lateinit var exitBtn:Button
+    private lateinit var exitBtn:ImageButton
     private lateinit var edtTitle:EditText
     private lateinit var edtContent:EditText
     private lateinit var edtCount:TextView
@@ -40,7 +37,7 @@ class WriteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_write)
 
         val nickName = findViewById<TextView>(R.id.nickName)
-        exitBtn = findViewById<Button>(R.id.exitBtn)
+        exitBtn = findViewById(R.id.exitBtn)
         edtTitle = findViewById(R.id.edtTitle)
         edtContent = findViewById(R.id.edtContent)
         edtCount = findViewById(R.id.count)
