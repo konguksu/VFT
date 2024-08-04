@@ -51,6 +51,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="18dp"
+        android:layout_marginRight="4dp"
         android:src="@drawable/ic_salmon"
         app:layout_constraintEnd_toStartOf="@id/daySalmon"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +63,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
         android:text="00"
-        android:textColor="@color/black"
+        android:textColor="@color/salmon_900"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/honeyIcon"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,6 +73,7 @@
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginTop="18dp"
+        android:layout_marginRight="4dp"
         android:src="@drawable/ic_honey"
         app:layout_constraintEnd_toStartOf="@id/dayHoney"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,9 +83,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="8dp"
         android:text="00"
-        android:textColor="@color/black"
+        android:textColor="@color/honey_700"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

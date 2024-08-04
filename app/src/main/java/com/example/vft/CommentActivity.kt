@@ -18,8 +18,8 @@ import java.util.*
 
 class CommentActivity : AppCompatActivity(){
 
-    private lateinit var exitBtn: Button
-    private lateinit var finBtn: ImageButton
+    private lateinit var exitBtn: ImageButton
+    private lateinit var finBtn: Button
     private lateinit var edtTitle:TextView
     private lateinit var edtContent:TextView
     private lateinit var edtCount:TextView
