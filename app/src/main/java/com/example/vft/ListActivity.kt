@@ -3,10 +3,7 @@ package com.example.vft
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,7 +22,7 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
         val nickName = findViewById<TextView>(R.id.nickName)
-        val exitBtn = findViewById<Button>(R.id.exitBtn)
+        val exitBtn = findViewById<ImageButton>(R.id.exitBtn)
         val listView = findViewById<ListView>(R.id.listView)
 
         adapter = ListAdapter(this, itemList, 1)
