@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="183dp"
-        android:background="@drawable/button_color_salmon300"
+        android:backgroundTint="@color/salmon_200"
         android:text="중복확인"
         android:textSize="15dp"
         android:textColor="@color/salmon_900"
