@@ -12,7 +12,7 @@
         android:layout_height="38dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ch0"
+        android:src="@drawable/logo_origin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,7 +126,7 @@
         android:layout_width="376dp"
         android:layout_height="450dp"
         android:layout_marginTop="120dp"
-        android:src="@drawable/ch0"
+        android:src="@drawable/ic_scr_bear1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
