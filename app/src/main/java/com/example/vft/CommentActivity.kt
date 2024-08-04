@@ -5,10 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
@@ -22,7 +19,7 @@ import java.util.*
 class CommentActivity : AppCompatActivity(){
 
     private lateinit var exitBtn: Button
-    private lateinit var finBtn: Button
+    private lateinit var finBtn: ImageButton
     private lateinit var edtTitle:TextView
     private lateinit var edtContent:TextView
     private lateinit var edtCount:TextView
