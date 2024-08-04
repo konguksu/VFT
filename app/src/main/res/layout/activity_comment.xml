@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommentActivity">
+    tools:context=".CommentActivity"
+    android:paddingTop="12dp">
 
     <ImageView
         android:id="@+id/logo"
@@ -20,8 +21,8 @@
         android:id="@+id/nickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="닉네임"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/logo"
@@ -30,19 +31,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
         android:text=" 님의 고민을 되돌아볼까요?"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/nickName"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/exitBtn"
         android:layout_width="43dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:text="X"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_x"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +63,7 @@
                 android:id="@+id/edtTitle"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
-                android:background="@drawable/square_border"
+                android:background="@color/white"
                 android:hint="제목"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -75,7 +79,7 @@
                 android:layout_width="380dp"
                 android:layout_height="400dp"
                 android:layout_marginTop="64dp"
-                android:background="@drawable/square_border"
+                android:background="@drawable/bear_stroke"
                 android:gravity="start"
                 android:hint="내용"
                 android:padding="10dp"
@@ -117,7 +121,7 @@
                     android:id="@+id/edtComment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/square_border"
+                    android:background="@drawable/bear_line"
                     android:hint="코멘트 작성하기"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
@@ -127,11 +131,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
+                <android.widget.Button
                     android:id="@+id/finBtn"
                     android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="3dp"
+                    android:layout_height="42dp"
+                    android:backgroundTint="@color/salmon_200"
+                    android:textColor="@color/salmon_900"
+                    android:textStyle="bold"
                     android:text="완료"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="15dp"
