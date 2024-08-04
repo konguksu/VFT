@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,8 +46,8 @@ class HomeFragment : Fragment(){
         dayHoney = view.findViewById(R.id.dayHoney)
         progress = view.findViewById(R.id.progress)
         dayGrowth = view.findViewById(R.id.dayGrowth)
-        val writeBtn: Button = view.findViewById(R.id.writeBtn)
-        val listBtn: Button = view.findViewById(R.id.listBtn)
+        val writeBtn: FloatingActionButton = view.findViewById(R.id.writeBtn)
+        val listBtn: FloatingActionButton = view.findViewById(R.id.listBtn)
 
         db = Firebase.firestore
         userID = Firebase.auth.currentUser!!.email.toString() //유저 이메일(아이디)
