@@ -13,7 +13,7 @@
         android:layout_marginTop="240dp"
         android:background="@drawable/color_line"
         android:ems="10"
-        android:hint="아이디를 입력하세요."
+        android:hint="이메일을 입력하세요."
         android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
