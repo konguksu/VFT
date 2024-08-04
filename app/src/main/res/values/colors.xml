@@ -20,6 +20,7 @@
     <color name="gray_400">#FF929292</color>
     <color name="gray_300">#FFB6B6B6</color>
     <color name="gray_200">#FFCFCFCF</color>
+    <color name="gray_alpha">#4D000000</color>
     <color name="white">#FFFFFFFF</color>
 
 </resources>
